@@ -20,3 +20,33 @@ def sorting_operations():
     return sort_state
 
 
+def transaction_output(date, description):
+    """
+    передаем дату и вид операции
+    :param date: дата платежа
+    :param description: операция
+    """
+    return f"{date[8:10]}.{date[5:7]}.{date[0:4]} {description}"
+
+
+def account_transaction(operation):
+    """
+    передаем счет отправителя и получателя
+    """
+    received = operation["to"]
+    if "from" in operation:
+        sent = operation["from"]
+        return f"{sent[:-16]}{sent[-16:-12]} {sent[-12:-10]}** **** {sent[-4:]} -> Счет **{received[-4:]}"
+    else:
+        action = operation["description"]
+        return f"{action} -> Счет **{received[-4:]}"
+
+def quantity(operation):
+    """
+    передаем сумму и валюту
+    """
+    return f"{operation["amount"]} {operation["currency"]["name"]}"
+
+
+
+
