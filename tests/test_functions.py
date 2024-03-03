@@ -1,4 +1,6 @@
+from config import ROOT_DIR
 from utils import functions
+import os
 
 
 test_file = [
@@ -81,8 +83,9 @@ test_file_sort = [
 ]
 
 
-# def test_uploading_file():
-#     assert functions.uploading_file('test_operations.json') == test_file
+def test_uploading_file():
+    file_path = os.path.join(ROOT_DIR, "tests", 'test_operations.json')
+    assert functions.uploading_file(file_path) == test_file
 
 
 def test_sorting_operations():
